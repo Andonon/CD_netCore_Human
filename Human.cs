@@ -5,34 +5,41 @@ namespace human {
     public class Human
     {
         public string name;
-        public int strength = 3;
-        public int intelligece = 3;
-        public int dexterity = 3;
-        public int health = 100;
+        public int health { get; set; }
+        public int strength { get; set; }
+        public int intelligence { get; set; }
+        public int dexterity { get; set; }
     
     
         public Human(string givenname) 
         {
             name = givenname;
+            strength = 3;
+            intelligence = 3;
+            dexterity = 3;
+            health = 100;
         }
     
-        public Human(string givenname, int givenstrength, int givenintelligence, int givendexterity, int givenhealth) 
+        public Human(string person, int str, int intel, int dex, int hp)
         {
-            name = givenname;
-            strength = givenstrength;
-            intelligece = givenintelligence;
-            dexterity = givendexterity;
-            health = givenhealth;
+            name = person;
+            strength = str;
+            intelligence = intel;
+            dexterity = dex;
+            health = hp;
         }
-    
-        public void Attack(Object targetname) 
+
+         public void attack(object target)
         {
-            if (targetname is Human)
-          {
-            Human victim = targetname as Human;
-            victim.health -= strength * 5;
-            Console.WriteLine(victim + "was injured in attack, lost " + strength * 5 + " points damage.");
-          }
+            Human enemy = target as Human;
+            if(enemy == null)
+            {
+                Console.WriteLine("Failed Attack");
+            }
+            else
+            {
+                enemy.health -= strength * 5;
+            }
         }
     
     
