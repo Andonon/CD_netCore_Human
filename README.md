@@ -18,3 +18,62 @@ Build a new .NET Project for this assignment as we will be revisiting in a later
  Now add a new method called attack, which when invoked, should attack another Human object that is passed as a parameter. The damage done should be 5 * strength (5 points of damage to the attacked, for each 1 point of strength of the attacker).
 
  (Optional) Change the last function to accept any object and just make sure it is of type Human before applying damage. Hint you may need to refer back to the Boxing/Unboxing tab!
+
+## Assignment Part 2: Wizard, Ninja, Samurai
+We are going to be revisiting our Human class and building out three new classes that all inherit from it
+
+    public class Human
+    {
+        public string name;
+
+        //The { get; set; } format creates accessor methods for the field specified
+        //This is done to allow flexibility
+        public int health { get; set; }
+        public int strength { get; set; }
+        public int intelligence { get; set; }
+        public int dexterity { get; set; }
+
+        public Human(string person)
+        {
+            name = person;
+            strength = 3;
+            intelligence = 3;
+            dexterity = 3;
+            health = 100;
+        }
+        public Human(string person, int str, int intel, int dex, int hp)
+        {
+            name = person;
+            strength = str;
+            intelligence = intel;
+            dexterity = dex;
+            health = hp;
+        }
+        public void attack(object obj)
+        {
+            Human enemy = obj as Human;
+            if(enemy == null)
+            {
+                Console.WriteLine("Failed Attack");
+            }
+            else
+            {
+                enemy.health -= strength * 5;
+            }
+        }
+    }
+
+Create a class for a Ninja, a Wizard, and a Samurai
+
+ Wizard should have a default health of 50 and intelligence of 25
+ Wizard should have a method called heal, which when invoked, heals the Wizard by 10 * intelligence
+ Wizard should have a method called fireball, which when invoked, decreases the health of whichever object it attacked by some random integer between 20 and 50
+ Ninja should have a default dexterity of 175
+ Ninja should have a steal method, which when invoked, attacks an object and increases the Ninjas health by 10
+ Ninja should have a get_away method, which when invoked, decreases its health by 15
+ Samurai should have a default health of 200
+ Samurai should have a method called death_blow, which when invoked should attack an object and decreases its health to 0 if it has less than 50 health
+ Samurai should have a method called meditate, which when invoked, heals the Samurai back to full health
+ (optional) Samurai should have a class method called how_many, which when invoked, displays how many Samurai's there are. Hint you may have to use the static keyword
+
+ 
